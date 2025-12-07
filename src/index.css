@@ -5,7 +5,7 @@
 
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+	background-color: #dedede;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -16,7 +16,18 @@
 body {
 	margin: 0;
 	display: flex;
-	place-items: center;
+
 	min-width: 320px;
 	min-height: 100vh;
+}
+
+#root {
+	margin-inline: auto;
+	margin-block: auto;
+}
+
+#root>section {
+	display: flex;
+	max-width: 600px;
+	height: clamp(80vh, 600px, 99vh);
 }

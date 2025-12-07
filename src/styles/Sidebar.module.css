@@ -1,0 +1,11 @@
+#container {
+    background-color: #12113a;
+    color: #ebebff;
+    border-radius: 20px 0 0 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
