@@ -1,22 +1,31 @@
-import "./components/Sidebar";
-import Sidebar from "./components/Sidebar";
-import styles from "./styles/Main.module.css";
+import {
+	Route,
+	RouterProvider,
+	createBrowserRouter,
+	createRoutesFromElements,
+} from "react-router-dom";
+import RootLayout from "./layout/RootLayout";
+import HomePage from "./pages/HomePage";
+import DashboardPage from "./pages/DashboardPage";
+import NewPage from "./pages/NewPage";
+import ReportsPage from "./pages/ReportsPage";
+import SettingsPage from "./pages/SettingsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
-	return (
-		<section>
-			<Sidebar />
-			<main id={styles.container}>
-				<h1>Main Section</h1>
-				<p>
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident
-					quisquam totam nostrum aut dicta eaque magnam quae accusantium quam
-					voluptates dolores, quasi voluptatem cupiditate maiores quidem vel
-					obcaecati minus! Nostrum?
-				</p>
-			</main>
-		</section>
+	const router = createBrowserRouter(
+		createRoutesFromElements(
+			<Route path={"/"} element={<RootLayout />}>
+				<Route index element={<HomePage />} />
+				<Route path={"dashboard"} element={<DashboardPage />} />
+				<Route path={"new"} element={<NewPage />} />
+				<Route path={"reports"} element={<ReportsPage />} />
+				<Route path={"settings"} element={<SettingsPage />} />
+				<Route path={"*"} element={<NotFoundPage />} />
+			</Route>
+		)
 	);
+	return <RouterProvider router={router} />;
 }
 
 export default App;

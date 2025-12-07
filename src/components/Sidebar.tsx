@@ -1,14 +1,29 @@
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "../styles/Sidebar.module.css";
 
 const Sidebar = () => {
+	const navigate = useNavigate();
 	return (
 		<div id={styles.container}>
-			<h2>money manager</h2>
+			<h2 id={styles.title} onClick={() => navigate("/", { replace: true })}>
+				money manager
+			</h2>
 			<ul>
-				<li>Dashboard</li>
-				<li>New</li>
-				<li>Reports</li>
-				<li>Settings</li>
+				<NavLink to={"/"} className={styles.navlink}>
+					<li>Home</li>
+				</NavLink>
+				<NavLink to={"/dashboard"} className={styles.navlink}>
+					<li>Dashboard</li>
+				</NavLink>
+				<NavLink to={"/new"} className={styles.navlink}>
+					<li>New</li>
+				</NavLink>
+				<NavLink to={"/reports"} className={styles.navlink}>
+					<li>Reports</li>
+				</NavLink>
+				<NavLink to={"/settings"} className={styles.navlink}>
+					<li>Settings</li>
+				</NavLink>
 			</ul>
 		</div>
 	);

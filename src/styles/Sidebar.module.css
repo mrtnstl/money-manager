@@ -2,10 +2,33 @@
     background-color: #12113a;
     color: #ebebff;
     border-radius: 20px 0 0 20px;
+    padding-inline: 1rem;
+}
+
+#title {
+    padding: .4rem 1rem;
+    margin-bottom: 1.4rem;
 }
 
 ul {
     list-style-type: none;
     margin-left: 0;
     padding-left: 0;
+}
+
+.navlink {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 1rem;
+    padding: .4rem 1rem;
+}
+
+.navlink:visited {
+    color: inherit;
+}
+
+.active>li {
+    color: red;
+    text-decoration: dashed;
 }
