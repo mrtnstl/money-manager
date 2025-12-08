@@ -1,10 +1,6 @@
-export function testIDB({
-	name,
-	value,
-}: {
-	name: string;
-	value: number;
-}): Promise<unknown> {
+import type { CashFlow } from "../types/cashflow.types";
+
+export function testIDB({ name, value }: CashFlow): Promise<unknown> {
 	return new Promise((resolve, reject) => {
 		const request: IDBOpenDBRequest = window.indexedDB.open(
 			"MoneyManagerDB",

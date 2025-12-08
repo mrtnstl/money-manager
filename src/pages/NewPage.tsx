@@ -1,23 +1,20 @@
-import styles from "../styles/Content.module.css";
-import { testIDB } from "../utils/indexeddb";
 import { useState } from "react";
-
-type SpendingData = {
-	name: string;
-	value: number;
-};
+import type { CashFlow } from "../types/cashflow.types";
+import { testIDB } from "../utils/indexeddb";
+import styles from "../styles/Content.module.css";
 
 const NewPage = () => {
-	const [spendingData, setSpendingData] = useState<SpendingData>({
+	const [spendingData, setSpendingData] = useState<CashFlow>({
 		name: "",
 		value: 0,
+		type: "expense",
 	});
 
 	const handleTestDBClick = () => {
 		testIDB(spendingData)
 			.then((result) => {
 				console.log("SUCCESS", result);
-				setSpendingData({ name: "", value: 0 });
+				setSpendingData({ ...spendingData, name: "", value: 0 });
 			})
 			.catch((err) => {
 				console.log("ERROR", err);
