@@ -34,5 +34,5 @@ body {
 #root>section {
 	display: flex;
 	max-width: 600px;
-	height: clamp(80vh, 600px, 99vh);
+	height: clamp(60vh, 600px, 99vh);
 }
