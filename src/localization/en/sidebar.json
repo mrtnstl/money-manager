@@ -1,0 +1,10 @@
+{
+	"sidebar": {
+		"title": "money manager",
+		"home": "Home",
+		"dashboard": "Dashboard",
+		"new": "New",
+		"reports": "Reports",
+		"settings": "Settings"
+	}
+}
