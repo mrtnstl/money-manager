@@ -24,13 +24,10 @@ ul {
 	color: inherit;
 	margin-bottom: 1rem;
 	padding: 0.4rem 1rem;
+	border-radius: 10px;
+	transition: background-color .2s linear
 }
 
 .navlink:visited {
 	color: inherit;
-}
-
-.active>li {
-	color: red;
-	text-decoration: dashed;
 }

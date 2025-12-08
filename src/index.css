@@ -36,3 +36,7 @@ body {
 	max-width: 600px;
 	height: clamp(60vh, 600px, 99vh);
 }
+
+.active {
+	background-color: #2f2f5b;
+}
