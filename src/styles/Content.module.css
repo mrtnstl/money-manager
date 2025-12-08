@@ -4,5 +4,8 @@
 	border-radius: 0 20px 20px 0;
 	padding-inline: 1rem;
 	overflow-y: auto;
+	overflow-x: hidden;
 	flex: auto;
+	/* TODO: fix this*/
+	width: 1000px;
 }

@@ -1,0 +1,55 @@
+#cashflowForm {
+    margin-block: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+#cashflowForm input {
+    border: none;
+    background-color: #dedede;
+    color: #12113a;
+    font-size: 1.2rem;
+    padding: .2rem;
+    border-radius: 6px;
+}
+
+#cashflowForm>input[type="text"],
+#cashflowForm>input[type="number"] {}
+
+#cashflowForm input[type="radio"] {}
+
+
+#cashflowForm>input[type="submit"] {
+    background-color: #4ca065;
+    color: #ebebff;
+    cursor: pointer;
+    opacity: .8;
+    transition: opacity .2s linear;
+}
+
+#cashflowForm>input[type="submit"]:hover {
+    opacity: 1;
+}
+
+#mainInput {
+    display: flex;
+    justify-content: center;
+    gap: .6rem;
+}
+
+#mainInput>* {
+    width: 50%;
+}
+
+#radioGroup {
+    padding: .4rem 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: .6rem;
+}
+
+#radioItem {
+    display: flex;
+
+}

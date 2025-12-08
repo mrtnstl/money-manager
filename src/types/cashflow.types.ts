@@ -5,6 +5,7 @@ export type CashFlow = {
 	name: string;
 	value: number;
 	type: "expense" | "income";
+	project: string;
 	category?: string;
 	timestamp?: Date;
 };

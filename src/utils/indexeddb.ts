@@ -1,6 +1,11 @@
 import type { CashFlow } from "../types/cashflow.types";
 
-export function testIDB({ name, value }: CashFlow): Promise<unknown> {
+export function testIDB({
+	name,
+	value,
+	type,
+	project,
+}: CashFlow): Promise<unknown> {
 	return new Promise((resolve, reject) => {
 		const request: IDBOpenDBRequest = window.indexedDB.open(
 			"MoneyManagerDB",
@@ -44,6 +49,8 @@ export function testIDB({ name, value }: CashFlow): Promise<unknown> {
 				id: crypto.randomUUID(),
 				name: name,
 				value: value,
+				type: type,
+				project: project,
 			});
 			resolve(successData);
 		};
