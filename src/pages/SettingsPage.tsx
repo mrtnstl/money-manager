@@ -1,4 +1,5 @@
 import styles from "../styles/Content.module.css";
+
 const SettingsPage = () => {
 	return (
 		<main id={styles.container}>
