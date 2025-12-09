@@ -16,13 +16,21 @@ ul {
 	list-style-type: none;
 	margin-left: 0;
 	padding-left: 0;
+
+	display: flex;
+	flex-direction: column;
+}
+
+ul:last-child {
+	/* TODO: */
+	justify-content: flex-end;
 }
 
 .navlink {
 	display: block;
 	text-decoration: none;
 	color: inherit;
-	margin-bottom: 1rem;
+	margin-bottom: .4rem;
 	padding: 0.4rem 1rem;
 	border-radius: 10px;
 	transition: background-color .2s linear
@@ -30,4 +38,17 @@ ul {
 
 .navlink:visited {
 	color: inherit;
+}
+
+#projectSelector {
+	width: 100%;
+	font-style: italic;
+	background-color: #262551;
+	color: #cecee1;
+	border-color: #12113a;
+	cursor: pointer;
+}
+
+#projectSelector>option {
+	font-style: normal;
 }

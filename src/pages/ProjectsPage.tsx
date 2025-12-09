@@ -2,9 +2,9 @@ import { useState } from "react";
 import type { CashFlow } from "../types/cashflow.types";
 import { testIDB } from "../utils/indexeddb";
 import styles from "../styles/Content.module.css";
-import newpage from "../styles/NewPage.module.css";
+import projectspage from "../styles/ProjectsPage.module.css";
 
-const NewPage = () => {
+const ProjectsPage = () => {
 	const [spendingData, setSpendingData] = useState<CashFlow>({
 		name: "",
 		value: 0,
@@ -34,15 +34,13 @@ const NewPage = () => {
 
 	return (
 		<main id={styles.container}>
-			<h1>New</h1>
+			<h1>Projects</h1>
 			<p>
-				This page will provide opportunity for the user to upload their
-				financial data including income, spending and monthly allowance. The
-				data can be separated by project, for example 'personal' or 'XYZ
-				project'
+				Set up a project, admin your cash flow and define your allowance, so you
+				can be mindful of your financial footprint.
 			</p>
-			<form id={newpage.cashflowForm} onSubmit={handleSubmit}>
-				<span id={newpage.mainInput}>
+			<form id={projectspage.cashflowForm} onSubmit={handleSubmit}>
+				<span id={projectspage.mainInput}>
 					<input
 						type="text"
 						name="name"
@@ -59,8 +57,8 @@ const NewPage = () => {
 						onChange={handleChange}
 					/>
 				</span>
-				<span id={newpage.radioGroup}>
-					<span className={newpage.radioItem}>
+				<span id={projectspage.radioGroup}>
+					<span className={projectspage.radioItem}>
 						<input
 							type="radio"
 							name="type"
@@ -83,10 +81,10 @@ const NewPage = () => {
 						<label htmlFor="typeIncome">income</label>
 					</span>
 				</span>
-				<input type="submit" value={"insert"} id={newpage.submitBtn} />
+				<input type="submit" value={"insert"} id={projectspage.submitBtn} />
 			</form>
 		</main>
 	);
 };
 
-export default NewPage;
+export default ProjectsPage;

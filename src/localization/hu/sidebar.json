@@ -2,10 +2,11 @@
 	"sidebar": {
 		"title": "money manager",
 		"home": "Kezdőlap",
-		"dashboard": "Grafikonok",
-		"new": "Új",
+		"dashboard": "Áttekintés",
+		"projects": "Projektek",
 		"reports": "Kiértékelések",
-		"exports": "Exportok",
+		"sync": "Szinkronizálás",
+		"howto": "Súgó",
 		"settings": "Beállítások"
 	}
 }

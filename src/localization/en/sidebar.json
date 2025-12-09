@@ -3,9 +3,10 @@
 		"title": "money manager",
 		"home": "Home",
 		"dashboard": "Dashboard",
-		"new": "New",
+		"projects": "Projects",
 		"reports": "Reports",
-		"exports": "Exports",
+		"sync": "Sync",
+		"howto": "HowTo",
 		"settings": "Settings"
 	}
 }

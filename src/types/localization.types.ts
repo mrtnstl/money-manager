@@ -2,8 +2,9 @@ export type MenuContent = {
 	title?: string;
 	home?: string;
 	dashboard?: string;
-	new?: string;
+	projects?: string;
 	reports?: string;
-	exports?: string;
+	sync?: string;
+	howto?: string;
 	settings?: string;
 };

@@ -37,6 +37,41 @@ body {
 	height: clamp(60vh, 600px, 99vh);
 }
 
-.active {
+.active:where(:not(:has(.linkWithIcon))) {
 	background-color: #2f2f5b;
+}
+
+
+.linkWithIcon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: spin-backward 1s ease-in-out forwards;
+	transform-origin: 50% 50%;
+
+}
+
+.active .linkWithIcon {
+	animation: spin-forward .6s ease-in-out forwards;
+}
+
+
+@keyframes spin-forward {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes spin-backward {
+	from {
+		transform: rotate(360deg);
+	}
+
+	to {
+		transform: rotate(0deg);
+	}
 }

@@ -4,6 +4,7 @@ import getLocalization from "../utils/getLocalization";
 import type { MenuContent } from "../types/localization.types";
 import styles from "../styles/Sidebar.module.css";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { GearIcon } from "../assets/SCVIcons";
 
 const mockProjectListData = [
 	{ id: "34j5234f4-18ffh45", text: "personal" },
@@ -41,7 +42,11 @@ const Sidebar = () => {
 			<ul>
 				{/*<input type="text" className={styles.navlink} />*/}
 				{projectList ? (
-					<select className={styles.navlink} name="selectedProject">
+					<select
+						id={styles.projectSelector}
+						className={styles.navlink}
+						name="selectedProject"
+					>
 						{projectList.map((project) => (
 							<option key={project.id} id={project.id} value={project.id}>
 								{project.text}
@@ -51,24 +56,32 @@ const Sidebar = () => {
 				) : (
 					<p>{"no project yet"}</p>
 				)}
+				<div>
+					<NavLink to={"/"} className={styles.navlink}>
+						<li>{localization.home || "home"}</li>
+					</NavLink>
+					<NavLink to={"/dashboard"} className={styles.navlink}>
+						<li>{localization.dashboard || "dashboard"}</li>
+					</NavLink>
+					<NavLink to={"/projects"} className={styles.navlink}>
+						<li>{localization.projects || "projects"}</li>
+					</NavLink>
+					<NavLink to={"/reports"} className={styles.navlink}>
+						<li>{localization.reports || "reports"}</li>
+					</NavLink>
+					<NavLink to={"/sync"} className={styles.navlink}>
+						<li>{localization.sync || "sync"}</li>
+					</NavLink>
+					<NavLink to={"/howto"} className={styles.navlink}>
+						<li>{localization.howto || "howto"}</li>
+					</NavLink>
+				</div>
 
-				<NavLink to={"/"} className={styles.navlink}>
-					<li>{localization.home || "home"}</li>
-				</NavLink>
-				<NavLink to={"/dashboard"} className={styles.navlink}>
-					<li>{localization.dashboard || "dashboard"}</li>
-				</NavLink>
-				<NavLink to={"/new"} className={styles.navlink}>
-					<li>{localization.new || "new"}</li>
-				</NavLink>
-				<NavLink to={"/reports"} className={styles.navlink}>
-					<li>{localization.reports || "reports"}</li>
-				</NavLink>
-				<NavLink to={"/exports"} className={styles.navlink}>
-					<li>{localization.exports || "exports"}</li>
-				</NavLink>
 				<NavLink to={"/settings"} className={styles.navlink}>
-					<li>{localization.settings || "settings"}</li>
+					<li className="linkWithIcon">
+						<GearIcon width={50} strokecolor={"#ebebffe5"} />
+					</li>
+					{/*localization.settings || "settings"*/}
 				</NavLink>
 			</ul>
 		</div>
