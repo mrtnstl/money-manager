@@ -1,0 +1,26 @@
+#exportIconContainer {
+    margin-block-start: 3rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#exportIconContainer a {
+    flex: 1;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 1.4rem .1rem;
+    border: 3px solid #212121;
+    border-radius: 20px;
+    background-color: #e2e2fc;
+    color: #12113a;
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    opacity: 0.7;
+    transition: opacity .2s linear
+}
+
+#exportIconContainer a:hover {
+    opacity: 1;
+}

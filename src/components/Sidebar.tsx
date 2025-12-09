@@ -5,10 +5,22 @@ import type { MenuContent } from "../types/localization.types";
 import styles from "../styles/Sidebar.module.css";
 import useLocalStorage from "../hooks/useLocalStorage";
 
+const mockProjectListData = [
+	{ id: "34j5234f4-18ffh45", text: "personal" },
+	{ id: "23f345432-234v3v4", text: "project1" },
+	{ id: "884h276dd-6jf3454", text: "the shop" },
+];
+
+type ProjectListItem = {
+	id: string;
+	text: string;
+};
+
 const Sidebar = () => {
 	const navigate = useNavigate();
 	const [localization, setLocalization] = useState<MenuContent>({});
-	const [lang, setLang] = useLocalStorage("lang", "en");
+	const [lang] = useLocalStorage("lang", "en"); // setLang
+	const [projectList, setProjectList] = useState<ProjectListItem[]>();
 
 	useEffect(() => {
 		console.log(localStorage.getItem("lang"));
@@ -16,13 +28,30 @@ const Sidebar = () => {
 			.then((response) => setLocalization(response))
 			.catch((err) => console.log(err));
 	}, [lang]);
-
+	useEffect(() => {
+		(() => {
+			setProjectList(mockProjectListData);
+		})();
+	}, []);
 	return (
 		<div id={styles.container}>
 			<h2 id={styles.title} onClick={() => navigate("/", { replace: true })}>
 				{localization.title || "money manager"}
 			</h2>
 			<ul>
+				{/*<input type="text" className={styles.navlink} />*/}
+				{projectList ? (
+					<select className={styles.navlink} name="selectedProject">
+						{projectList.map((project) => (
+							<option key={project.id} id={project.id} value={project.id}>
+								{project.text}
+							</option>
+						))}
+					</select>
+				) : (
+					<p>{"no project yet"}</p>
+				)}
+
 				<NavLink to={"/"} className={styles.navlink}>
 					<li>{localization.home || "home"}</li>
 				</NavLink>
