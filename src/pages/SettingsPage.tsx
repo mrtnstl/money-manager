@@ -1,6 +1,19 @@
+import { useEffect, type ChangeEvent } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 import styles from "../styles/Content.module.css";
 
 const SettingsPage = () => {
+	const [lang, setLang] = useLocalStorage("lang", "en");
+
+	useEffect(() => {}, []);
+
+	const handleChange = (e: ChangeEvent<HTMLSelectElement>): void => {
+		e.preventDefault();
+		console.log("lang:", lang);
+		const newLang = e.target.value;
+		setLang(newLang);
+	};
+
 	return (
 		<main id={styles.container}>
 			<h1>Settings</h1>
@@ -9,7 +22,7 @@ const SettingsPage = () => {
 				users can set
 			</p>
 			<form action="">
-				<select name="" id="">
+				<select name="" id="" onChange={handleChange}>
 					<option value="en">english</option>
 					<option value="hu">hungarian</option>
 				</select>

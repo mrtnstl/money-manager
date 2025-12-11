@@ -5,23 +5,12 @@ import type { MenuContent } from "../types/localization.types";
 import styles from "../styles/Sidebar.module.css";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { GearIcon } from "../assets/SCVIcons";
-
-const mockProjectListData = [
-	{ id: "34j5234f4-18ffh45", text: "personal" },
-	{ id: "23f345432-234v3v4", text: "project1" },
-	{ id: "884h276dd-6jf3454", text: "the shop" },
-];
-
-type ProjectListItem = {
-	id: string;
-	text: string;
-};
+import EditableSelect from "./EditableSelect";
 
 const Sidebar = () => {
 	const navigate = useNavigate();
 	const [localization, setLocalization] = useState<MenuContent>({});
 	const [lang] = useLocalStorage("lang", "en"); // setLang
-	const [projectList, setProjectList] = useState<ProjectListItem[]>();
 
 	useEffect(() => {
 		console.log(localStorage.getItem("lang"));
@@ -29,19 +18,15 @@ const Sidebar = () => {
 			.then((response) => setLocalization(response))
 			.catch((err) => console.log(err));
 	}, [lang]);
-	useEffect(() => {
-		(() => {
-			setProjectList(mockProjectListData);
-		})();
-	}, []);
+
 	return (
 		<div id={styles.container}>
 			<h2 id={styles.title} onClick={() => navigate("/", { replace: true })}>
 				{localization.title || "money manager"}
 			</h2>
 			<ul>
-				{/*<input type="text" className={styles.navlink} />*/}
-				{projectList ? (
+				<EditableSelect />
+				{/*projectList ? (
 					<select
 						id={styles.projectSelector}
 						className={styles.navlink}
@@ -55,7 +40,7 @@ const Sidebar = () => {
 					</select>
 				) : (
 					<p>{"no project yet"}</p>
-				)}
+				)*/}
 				<div>
 					<NavLink to={"/"} className={styles.navlink}>
 						<li>{localization.home || "home"}</li>

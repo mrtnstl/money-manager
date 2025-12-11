@@ -1,0 +1,35 @@
+#projectSelector {
+    width: 100%;
+    font-style: italic;
+    background-color: #262551;
+    color: #cecee1;
+    border-color: #12113a;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* TODO: troubleshoot the 2 pseudo selector below, doesn't work currently*/
+input:is(input[id="projectSelector"]) {
+    cursor: default;
+}
+
+button:is(button[id="projectSelector"]) {
+    cursor: pointer;
+}
+
+#dropdown {
+    position: absolute;
+    background-color: black;
+    overflow: hidden;
+    border-radius: 0 0 10px 10px;
+}
+
+.dropdownItem {
+    padding-inline: 3rem;
+    cursor: pointer;
+
+}
+
+.dropdownItem:hover {
+    background-color: blue;
+}
