@@ -1,3 +1,11 @@
+#controlsSection {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: inherit;
+    border-bottom: 2px solid #12113a;
+}
+
 #cashflowForm {
     margin-block: 2rem;
     display: flex;
@@ -75,6 +83,15 @@
 
 }
 
+.dataSection>*:nth-child(1) {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.dataSection>*:nth-child(3) {
+    font-size: .8rem;
+}
+
 .cashflowIncome {
     font-weight: bold;
     color: #26c556;
@@ -83,4 +100,23 @@
 .cashflowExpense {
     font-weight: bold;
     color: #e95a5a;
+}
+
+.cashflowRecordControls {
+    display: flex;
+    gap: .8rem
+}
+
+.controlButton {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    opacity: .7;
+    transition: opacity .2s linear;
+    cursor: pointer;
+}
+
+.controlButton:hover {
+    opacity: 1;
 }

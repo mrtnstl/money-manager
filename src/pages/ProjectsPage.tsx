@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../utils/database";
 import type { Cashflow } from "../types/database.types";
+import { PenIcon, BinIcon } from "../assets/SCVIcons";
 import styles from "../styles/Content.module.css";
 import projectspage from "../styles/ProjectsPage.module.css";
 import AddCashflowForm from "../components/forms/AddCashflowForm";
@@ -24,18 +25,20 @@ const ProjectsPage = () => {
 
 	return (
 		<main id={styles.container}>
-			<h1>Projects</h1>
-			<p>
-				Set up a project, admin your cash flow and define your allowance, so you
-				can be mindful of your financial footprint.
-			</p>
-			<AddCashflowForm />
+			<section id={projectspage.controlsSection}>
+				<h1>Projects</h1>
+				<p>
+					Set up a project, admin your cash flow and define your allowance, so
+					you can be mindful of your financial footprint.
+				</p>
+				<AddCashflowForm />
+			</section>
 
 			<div id={projectspage.cashflowList}>
 				{storedCashflow &&
 					storedCashflow.map((item: Cashflow) => (
 						<div key={item.id} className={projectspage.cashflowListItem}>
-							<div>
+							<div className={projectspage.dataSection}>
 								<p>{item.name}</p>
 								<p
 									className={
@@ -46,10 +49,32 @@ const ProjectsPage = () => {
 								>
 									{(item.type === "income" ? "+" : "-") + item.value + "HUF"}
 								</p>
-								<p>{new Date(item.occurredAt!).toISOString()}</p>
+								<p>
+									{new Date(item.occurredAt!)
+										.toISOString()
+										.split("T")[0]
+										.replaceAll("-", " ")}
+								</p>
 							</div>
-							<div>
-								<button type="button">MOD</button>
+							<div className={projectspage.cashflowRecordControls}>
+								<button
+									type="button"
+									className={projectspage.controlButton}
+									onClick={() =>
+										window.alert(`modify button clicked with id: ${item.id}`)
+									}
+								>
+									<PenIcon height={30} width={30} strokecolor="#12113a" />
+								</button>
+								<button
+									type="button"
+									className={projectspage.controlButton}
+									onClick={() =>
+										window.alert(`delete button clicked with id: ${item.id}`)
+									}
+								>
+									<BinIcon width={30} height={30} strokecolor="#db2a2aff" />
+								</button>
 							</div>
 						</div>
 					))}
