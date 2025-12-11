@@ -8,14 +8,27 @@
 |-----------|-----------------------|-----------|
 | React     | no dedicated backend  | IndexedDB |
 
+### Frontend
+
+**Technologies**
+
+TypeScript, React, React Router, Recharts
+
+### Database
+
+![Models and ERD](https://github.com/mrtnstl/money-manager/blob/main/docs/models_and_erd.png "Models and ERD")
+
 ## About the Application
 
 ### Terminology
 
 The app uses some terms that are quite straightforward but important to establish nonetheless.
 
+**Profile**:
+- A 'profile' is the collection of data that us used to identify the user and store their preferences.
+
 **Project**:  
-- A project is a specific field of interest that the user wants to track, such as "personal" or "side hustle," for example.
+- A 'project' is a specific field of interest that the user wants to track, such as "personal" or "side hustle," for example.
 
 **Cash Flow**:  
-- This refers to events of money in motion involving the user. There are two categories: "income" and "expense."
+- 'Cash flow' refers to events of money in motion involving the user. There are two categories: "income" and "expense."
