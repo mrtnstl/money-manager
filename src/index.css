@@ -68,7 +68,7 @@ body {
 
 @keyframes spin-backward {
 	from {
-		transform: rotate(360deg);
+		transform: rotate(180deg);
 	}
 
 	to {

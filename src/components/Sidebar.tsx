@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router";
 import getLocalization from "../utils/getLocalization";
 import type { MenuContent } from "../types/localization.types";
 import styles from "../styles/Sidebar.module.css";

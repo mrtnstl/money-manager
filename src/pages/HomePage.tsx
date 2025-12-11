@@ -4,8 +4,8 @@ const HomePage = () => {
 		<main id={styles.container}>
 			<h1>Home</h1>
 			<p>
-				This is the home page whith basic information about the current user. (+
-				logout, last login)
+				This is the home page whith basic information about the current user.
+				(add, select, modify, delete users)
 			</p>
 		</main>
 	);

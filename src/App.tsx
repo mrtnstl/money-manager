@@ -3,7 +3,7 @@ import {
 	RouterProvider,
 	createBrowserRouter,
 	createRoutesFromElements,
-} from "react-router-dom";
+} from "react-router";
 import RootLayout from "./layout/RootLayout";
 import HomePage from "./pages/HomePage";
 import DashboardPage from "./pages/DashboardPage";

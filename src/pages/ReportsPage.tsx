@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import styles from "../styles/Content.module.css";
 import reportspage from "../styles/ReportsPage.module.css";
 
@@ -15,6 +15,7 @@ const ReportsPage = () => {
 				<Link to={"/"}> .png</Link>
 				<Link to={"/"}> email</Link>
 			</div>
+			<p>TODO: reports plus 'export report' func</p>
 		</main>
 	);
 };
