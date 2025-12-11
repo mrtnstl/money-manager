@@ -8,6 +8,13 @@
 	flex: auto;
 	/* TODO: fix this*/
 	width: 1000px;
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+#container::-webkit-scrollbar {
+	display: none;
 }
 
 h1 {

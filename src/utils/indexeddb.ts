@@ -1,11 +1,6 @@
-import type { CashFlow } from "../types/cashflow.types";
+import type { Cashflow } from "../types/database.types";
 
-export function testIDB({
-	name,
-	value,
-	type,
-	project,
-}: CashFlow): Promise<unknown> {
+export function testIDB({ name, value, type }: Cashflow): Promise<unknown> {
 	return new Promise((resolve, reject) => {
 		const request: IDBOpenDBRequest = window.indexedDB.open(
 			"MoneyManagerDB",
@@ -50,7 +45,6 @@ export function testIDB({
 				name: name,
 				value: value,
 				type: type,
-				project: project,
 			});
 			resolve(successData);
 		};

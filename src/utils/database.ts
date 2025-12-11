@@ -1,23 +1,7 @@
-type StoreNamesType = "projects" | "cashflow" | "reports" | "profiles";
-
-interface Project {
-	id: string;
-	name: string;
-}
-
-type TransactionType = "expense" | "income";
-
-interface Transaction {
-	id: string;
-	projectId: string;
-	name: string;
-	value: number;
-	type: TransactionType;
-	occurred_at: Date; // TODO: or string?
-}
+import { type StoreNamesType } from "../types/database.types";
 
 class IndexedDB {
-	private dbName = "";
+	private dbName = "MoneyManagerDB";
 	private version = 1;
 	private db: IDBDatabase | null = null;
 
@@ -33,6 +17,12 @@ class IndexedDB {
 			request.onupgradeneeded = (event) => {
 				const db = (event.target as IDBOpenDBRequest).result;
 
+				if (!db.objectStoreNames.contains("profiles")) {
+					db.createObjectStore("profiles", {
+						keyPath: "id",
+						autoIncrement: false,
+					});
+				}
 				if (!db.objectStoreNames.contains("projects")) {
 					db.createObjectStore("projects", {
 						keyPath: "id",
@@ -44,8 +34,15 @@ class IndexedDB {
 						keyPath: "id",
 						autoIncrement: false,
 					});
-					store.createIndex("occurredAt", "occurredAt", { unique: false });
+					store.createIndex("value", "value", { unique: false });
 					store.createIndex("type", "type", { unique: false });
+					store.createIndex("occurredAt", "occurredAt", { unique: false });
+				}
+				if (!db.objectStoreNames.contains("reports")) {
+					db.createObjectStore("reports", {
+						keyPath: "id",
+						autoIncrement: false,
+					});
 				}
 			};
 		});
@@ -56,15 +53,12 @@ class IndexedDB {
 		return await this.open();
 	}
 
-	async add<T>(
-		storeName: StoreNamesType,
-		item: Omit<T, "id">
-	): Promise<number> {
+	async add<T>(storeName: StoreNamesType, item: T): Promise<number> {
 		const db = await this.getDB();
 		return new Promise((resolve, reject) => {
 			const tx = db.transaction(storeName, "readwrite");
 			const store = tx.objectStore(storeName);
-			const request = store.add(item as unknown); // as any?
+			const request = store.add(item as T); // as any?
 
 			request.onerror = () => reject(request.error);
 			request.onsuccess = () => resolve(request.result as number);
@@ -85,7 +79,7 @@ class IndexedDB {
 
 	async getById<T>(
 		storeName: StoreNamesType,
-		id: number
+		id: string
 	): Promise<T | undefined> {
 		const db = await this.getDB();
 		return new Promise((resolve, reject) => {
@@ -98,10 +92,10 @@ class IndexedDB {
 		});
 	}
 
-	async getByIndex<T>(
-		storeName: "transactions", // TODO:
+	async getByIndex<T>( // TODO: define the proper func params
+		storeName: "cashflow",
 		indexName: "projectId" | "occurredAt" | "type",
-		value: any
+		value: any // any
 	): Promise<T[]> {
 		const db = await this.getDB();
 		return new Promise((resolve, reject) => {
@@ -117,20 +111,20 @@ class IndexedDB {
 
 	async update<T>(
 		storeName: StoreNamesType,
-		item: T & { id: number }
+		item: T & { id: string }
 	): Promise<void> {
 		const db = await this.getDB();
 		return new Promise((resolve, reject) => {
 			const tx = db.transaction(storeName, "readwrite");
 			const store = tx.objectStore(storeName);
-			const request = store.put(item as unknown); // as any?
+			const request = store.put(item as any); // as any?
 
 			request.onerror = () => reject(request.error);
 			request.onsuccess = () => resolve();
 		});
 	}
 
-	async delete(storeName: StoreNamesType, id: number): Promise<void> {
+	async delete(storeName: StoreNamesType, id: string): Promise<void> {
 		const db = await this.getDB();
 		return new Promise((resolve, reject) => {
 			const tx = db.transaction(storeName, "readwrite");

@@ -53,3 +53,34 @@
     display: flex;
 
 }
+
+#cashflowList {
+    display: flex;
+    flex-direction: column;
+}
+
+.cashflowListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.cashflowListItem:not(:last-child) {
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
+}
+
+.cashflowListItem:last-child {
+    margin-bottom: 2rem;
+
+}
+
+.cashflowIncome {
+    font-weight: bold;
+    color: #26c556;
+}
+
+.cashflowExpense {
+    font-weight: bold;
+    color: #e95a5a;
+}

@@ -1,36 +1,26 @@
-import { useState } from "react";
-import type { CashFlow } from "../types/cashflow.types";
-import { testIDB } from "../utils/indexeddb";
+import { useEffect, useState } from "react";
+import { db } from "../utils/database";
+import type { Cashflow } from "../types/database.types";
 import styles from "../styles/Content.module.css";
 import projectspage from "../styles/ProjectsPage.module.css";
+import AddCashflowForm from "../components/forms/AddCashflowForm";
 
 const ProjectsPage = () => {
-	const [spendingData, setSpendingData] = useState<CashFlow>({
-		name: "",
-		value: 0,
-		type: "expense",
-		project: "personal",
-	});
+	const [storedCashflow, setStoredCashflow] = useState<Cashflow[]>([]);
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const target = e.target;
-		const value = target.type === "checkbox" ? target.checked : target.value;
-		const name = target.name;
-		setSpendingData((values) => ({ ...values, [name]: value }));
-	};
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		console.log("SUBMIT");
-
-		testIDB(spendingData)
-			.then((result) => {
-				console.log("SUCCESS", result);
-				setSpendingData({ ...spendingData, name: "", value: 0 });
-			})
-			.catch((err) => {
-				console.log("ERROR", err);
-			});
-	};
+	useEffect(() => {
+		(async () => {
+			try {
+				const cashflow = await db.getAll<Cashflow>("cashflow");
+				const sortedResult = cashflow.sort(
+					(a, b) => b.occurredAt - a.occurredAt
+				);
+				setStoredCashflow(sortedResult);
+			} catch (err) {
+				console.log((err as Error).message);
+			}
+		})();
+	}, []);
 
 	return (
 		<main id={styles.container}>
@@ -39,50 +29,31 @@ const ProjectsPage = () => {
 				Set up a project, admin your cash flow and define your allowance, so you
 				can be mindful of your financial footprint.
 			</p>
-			<form id={projectspage.cashflowForm} onSubmit={handleSubmit}>
-				<span id={projectspage.mainInput}>
-					<input
-						type="text"
-						name="name"
-						placeholder="item name"
-						autoComplete="false"
-						value={spendingData.name}
-						onChange={handleChange}
-					/>
-					<input
-						type="number"
-						name="value"
-						autoComplete="false"
-						value={spendingData.value}
-						onChange={handleChange}
-					/>
-				</span>
-				<span id={projectspage.radioGroup}>
-					<span className={projectspage.radioItem}>
-						<input
-							type="radio"
-							name="type"
-							id="typeExpense"
-							value="expense"
-							checked={spendingData.type === "expense"}
-							onChange={handleChange}
-						/>
-						<label htmlFor="typeExpense">expense</label>
-					</span>
-					<span>
-						<input
-							type="radio"
-							name="type"
-							id="typeIncome"
-							value="income"
-							checked={spendingData.type === "income"}
-							onChange={handleChange}
-						/>
-						<label htmlFor="typeIncome">income</label>
-					</span>
-				</span>
-				<input type="submit" value={"insert"} id={projectspage.submitBtn} />
-			</form>
+			<AddCashflowForm />
+
+			<div id={projectspage.cashflowList}>
+				{storedCashflow &&
+					storedCashflow.map((item: Cashflow) => (
+						<div key={item.id} className={projectspage.cashflowListItem}>
+							<div>
+								<p>{item.name}</p>
+								<p
+									className={
+										item.type === "income"
+											? projectspage.cashflowIncome
+											: projectspage.cashflowExpense
+									}
+								>
+									{(item.type === "income" ? "+" : "-") + item.value + "HUF"}
+								</p>
+								<p>{new Date(item.occurredAt!).toISOString()}</p>
+							</div>
+							<div>
+								<button type="button">MOD</button>
+							</div>
+						</div>
+					))}
+			</div>
 		</main>
 	);
 };
