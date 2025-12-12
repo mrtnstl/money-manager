@@ -5,11 +5,12 @@ import styles from "../styles/Content.module.css";
 const SettingsPage = () => {
 	const [lang, setLang] = useLocalStorage("lang", "en");
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		console.log("lengvidzs", lang);
+	}, []);
 
 	const handleChange = (e: ChangeEvent<HTMLSelectElement>): void => {
 		e.preventDefault();
-		console.log("lang:", lang);
 		const newLang = e.target.value;
 		setLang(newLang);
 	};
@@ -22,7 +23,7 @@ const SettingsPage = () => {
 				users can set
 			</p>
 			<form action="">
-				<select name="" id="" onChange={handleChange}>
+				<select name="" id="" value={lang} onChange={handleChange}>
 					<option value="en">english</option>
 					<option value="hu">hungarian</option>
 				</select>

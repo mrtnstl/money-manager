@@ -23,6 +23,19 @@ const ProjectsPage = () => {
 		})();
 	}, []);
 
+	const handleDelete = async (id: string) => {
+		console.log(id);
+		try {
+			await db.delete("cashflow", id);
+			console.log(`Record deleted successfuly`);
+		} catch (err) {
+			console.log((err as Error).message);
+		}
+	};
+	const handleModification = (id: string) => {
+		// TODO: trigger popover form
+		console.log(`mod record ${id}`);
+	};
 	return (
 		<main id={styles.container}>
 			<section id={projectspage.controlsSection}>
@@ -60,18 +73,14 @@ const ProjectsPage = () => {
 								<button
 									type="button"
 									className={projectspage.controlButton}
-									onClick={() =>
-										window.alert(`modify button clicked with id: ${item.id}`)
-									}
+									onClick={() => handleModification(item.id)}
 								>
 									<PenIcon height={30} width={30} strokecolor="#12113a" />
 								</button>
 								<button
 									type="button"
 									className={projectspage.controlButton}
-									onClick={() =>
-										window.alert(`delete button clicked with id: ${item.id}`)
-									}
+									onClick={() => handleDelete(item.id)}
 								>
 									<BinIcon width={30} height={30} strokecolor="#db2a2aff" />
 								</button>
